@@ -19,6 +19,8 @@ public class ApiClient {
     private ApiToken token;
 
     private static final String POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
+    Type postsType = new TypeToken<ArrayList<Post>>(){}.getType();
+
 
     public List<Post> getPosts() throws IOException {
         if (!ApiTokenProvider.isValidToken(token)) {
@@ -28,11 +30,9 @@ public class ApiClient {
                 .url(POSTS_URL)
                 .build();
 
-        Type postsType = new TypeToken<ArrayList<Post>>(){}.getType();
-
+        System.out.println("=== 요청토큰: " + token.getAccessToken());
         try (Response response = client.newCall(request).execute()) {
             String body = response.body().string();
-            System.out.println("getPosts success");
             return gson.fromJson(body, postsType);
         }
     }

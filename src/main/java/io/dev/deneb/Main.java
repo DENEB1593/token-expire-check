@@ -8,9 +8,9 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws Exception {
         ApiClient client = new ApiClient();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 700; i++) {
             List<Post> posts = client.getPosts();
-            Thread.sleep(1000);
+            //Thread.sleep(1000);
         }
     }
 }
